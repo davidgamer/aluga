@@ -2,13 +2,20 @@ package com.java.aluga.br.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.eclipse.persistence.jpa.config.Cascade;
 
 @Entity
+@Table(name = "pessoa")
 public class Pessoa implements Serializable {
 
 	
@@ -26,6 +33,9 @@ public class Pessoa implements Serializable {
 	
 	@Column(name="CPF",nullable=false)
 	private Integer Cpf;
+	
+	
+	
 
 	public Integer getIdPessoa() {
 		return IdPessoa;
@@ -55,6 +65,18 @@ public class Pessoa implements Serializable {
 		return serialVersionUID;
 	}
 	
+	
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "pessoa",cascade = CascadeType.ALL)
+	private Usuario usuario;
+	
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "pessoa",cascade = CascadeType.ALL)
+	private Avalista avalista;
+	
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "pessoa",cascade = CascadeType.ALL)
+	private Funcionario funcionario;
+	
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "pessoa",cascade = CascadeType.ALL)
+	private Propietario propietario;
 	
 	
 	

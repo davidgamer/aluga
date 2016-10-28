@@ -2,6 +2,10 @@ package com.java.aluga.br.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 public class Funcionario implements Serializable {
 
 	
@@ -13,6 +17,10 @@ public class Funcionario implements Serializable {
 	
 	private Double comissao;
 
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idPessoa")
+	private Pessoa pessoa;
 	
 	
 	
